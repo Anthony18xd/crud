@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Registrar cuenta</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+    </head>
+    <body class="loader">
+        <div class="container mt-5">
+            <div class="">
+                <div class="col-md-6">
+                    <h3 class="mb-3">Crear cuenta</h3>
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                        {% for category, message in messages %}
+                          <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+
+                    <form method="post" action="{{ url_for('register') }}">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear cuenta</button>
+                        <a href="{{ url_for('login') }}" class="btn btn-link">Ya tengo cuenta</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
